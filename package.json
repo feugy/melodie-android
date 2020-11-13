@@ -1,0 +1,55 @@
+{
+  "name": "melodie-android",
+  "version": "0.0.0",
+  "description": "Melodie is a portable, simple-as-pie music player",
+  "author": {
+    "name": "Damien Simonin Feugas",
+    "email": "damien.feugas@gmail.com"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "repository": {
+    "url": "https://github.com/feugy/melodie"
+  },
+  "scripts": {
+    "start:dev": "node .",
+    "build": "run-s build:android copy",
+    "build:android": "androidjs build",
+    "copy": "cp dist/melodie-android.apk \"/run/user/1000/gvfs/mtp:host=HUAWEI_CLT-L09_LCL0218704001260/Mémoire de stockage interne/Download\""
+  },
+  "dependencies": {
+    "androidjs": "^2.0.2",
+    "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "app-name": "Mélodie",
+  "package-name": "melodie",
+  "project-type": "webview",
+  "icon": "public/icons/icon-512x512.png",
+  "dist-path": "dist",
+  "permission": [
+    "android.permission.INTERNET",
+    "android.permission.READ_EXTERNAL_STORAGE"
+  ],
+  "theme": {
+    "fullScreen": true
+  }
+}

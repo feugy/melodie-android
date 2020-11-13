@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="../node_modules/androidjs/lib/androidjs.js"
+    ></script>
+  </head>
+  <body>
+    <h3>Hey!</h3>
+    <button onclick="load()">Reload</button>
+    <ul id="entries"></li>
+  </body>
+  <script type="text/javascript">
+
+    front.on('entry', entry => {
+      console.log(new Date().toTimeString(), 'UI received:', entry)
+      const item = document.createElement('li')
+      item.textContent = entry
+      document.querySelector('#entries').appendChild(item)
+    })
+
+    function load() {
+      front.send('read-folder', app.getPath('music'))
+    }
+
+    load()
+  </script>
+</html>
